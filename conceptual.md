@@ -12,7 +12,7 @@ SQL query language or SQL database? Both use a similar SQL query language
 
 - In `psql`, how do you connect to a database?
 
-/c databasename;
+\c databasename;
 
 - What is the difference between `HAVING` and `WHERE`?
 
