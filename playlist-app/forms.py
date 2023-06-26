@@ -8,7 +8,7 @@ from wtforms.validators import Length, InputRequired
 class PlaylistForm(FlaskForm):
     """Form for adding playlists."""
 
-    name = StringField(
+    title = StringField(
         "Name",
         validators=[
             Length(max=20, message="Playlist name is too long"),
@@ -43,7 +43,7 @@ class SongForm(FlaskForm):
     )
 
 
-class NewSongForPlaylistForm(FlaskForm):
+class SongToPlaylistForm(FlaskForm):
     """Form for adding a song to playlist."""
 
-    song = SelectField("Song To Add", coerce=int)
+    selection = SelectField("Add to", coerce=int)

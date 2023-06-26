@@ -6,9 +6,23 @@
   <h1>{{ song.title }}!</h1>
   <p class="lead">&ndash; {{ song.artist }}</p>
 </div>
-
+<h3>Included in these playlists</h3>
 <ul>
-  DISPLAY ALL OF THE PLAYLISTS THAT THIS SONG IS A PART OF
+  {% if not song.playlists %}
+  <li>No playlists yet!</li>
+  {% endif %}
+  {% for playlist in song.playlists %}
+  <li>{{ playlist.title }}</li>
+  {% endfor %}
 </ul>
+
+<p>Add this song to a playlist:</p>
+<form method="post">
+  {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !='hidden' %}
+    {{ field.label }}
+    {{ field(class='form-control')}}
+  {% endfor %}
+  <button type="submit" class="btn btn-lg btn-primary">Add</button>
+</form>
 
 {% endblock %}
