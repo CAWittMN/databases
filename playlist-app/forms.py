@@ -11,14 +11,14 @@ class PlaylistForm(FlaskForm):
     title = StringField(
         "Name",
         validators=[
-            Length(max=20, message="Playlist name is too long"),
+            Length(max=50, message="Playlist name is too long"),
             InputRequired(),
         ],
     )
     description = TextAreaField(
         "Description",
         validators=[
-            Length(max=255, message="Playlist description is too long"),
+            Length(max=250, message="Playlist description is too long"),
             InputRequired(),
         ],
     )

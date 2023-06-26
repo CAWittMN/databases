@@ -1,14 +1,33 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>Playlists</h1>
+<h1>All the playlists!</h1>
 
-<ul>
-  {% for playlist in playlists %}
-  <li>
-    <a href="/playlists/{{ playlist.id }}">{{ playlist.title }}</a>
-  </li>
-  {% endfor %}
-</ul>
+<table class="table">
+  <thead>
+    <th scope="col">Title</th>
+    <th scope="col"># of Songs</th>
+    <th scope="col">Description</th>
+  </thead>
+  <tbody>
+    {% for playlist in playlists %}
+    <tr>
+      <td><a href="/playlists/{{ playlist.id }}">{{ playlist.title }}</a></td>
+      <td>{{ playlist.songs|length }} song{% if playlist.songs|length > 1 %}s{% endif %}</td>
+      <td>
+        <div class='text-truncate'>{{ playlist.description }}</div>
+      </td>
+      <td>
+        <form action="/playlists/{{ playlist.id }}/delete" method="post">
+          <input type="hidden" />
+          <button type="submit" class="btn text-danger">
+          X
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 <p><a class="btn btn-primary" href="/playlists/add">Add a playlist</a></p>
 

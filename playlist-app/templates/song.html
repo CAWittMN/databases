@@ -1,28 +1,27 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <div class="jumbotron">
-  <h1>{{ song.title }}!</h1>
+  <h1>{{ song.title }}</h1>
   <p class="lead">&ndash; {{ song.artist }}</p>
 </div>
 <h3>Included in these playlists</h3>
 <ul>
   {% if not song.playlists %}
   <li>No playlists yet!</li>
-  {% endif %}
-  {% for playlist in song.playlists %}
-  <li>{{ playlist.title }}</li>
+  {% endif %} {% for playlist in song.playlists %}
+  <li><a href="/playlists/{{playlist.id}}">{{ playlist.title }}</a></li>
   {% endfor %}
 </ul>
 
-<p>Add this song to a playlist:</p>
+<div>Add this song to a playlist:</div>
 <form method="post">
-  {{ form.hidden_tag() }} {% for field in form if field.widget.input_type !='hidden' %}
-    {{ field.label }}
-    {{ field(class='form-control')}}
-  {% endfor %}
-  <button type="submit" class="btn btn-lg btn-primary">Add</button>
+  {{ form.hidden_tag() }} {% for field in form if field.widget.input_type
+  !='hidden' %}{{ field(class='form-control w-50')}} {% endfor %} {% if
+  form.selection.choices|length > 0 %}
+  <button type="submit" class="mt-2 btn btn-primary">Add</button>
+  {% else %}
+  <button type="submit" class="mt-2 btn btn-primary" disabled>Add</button>
+  {% endif %}
 </form>
 
 {% endblock %}

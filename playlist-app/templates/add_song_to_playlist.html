@@ -1,9 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-
-<h1>Add a song to {{ playlist.name }}</h1>
-
-<h1>Add a form that when submitted adds a song to this playlist!</h1>
-
+<h1>Add a song to "{{ playlist.title }}"</h1>
+<form method="post">
+  {{ form.hidden_tag() }} {% for field in form if field.widget.input_type
+  !='hidden' %}{{ field(class='form-control w-50')}} {% endfor %} {% if
+  form.selection.choices|length > 0 %}
+  <button type="submit" class="mt-2 btn btn-primary">Add</button>
+  {% else %}
+  <button type="submit" class="mt-2 btn btn-primary" disabled>Add</button>
+  {% endif %}
+</form>
 {% endblock %}

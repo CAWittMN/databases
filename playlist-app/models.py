@@ -11,8 +11,8 @@ class Playlist(db.Model):
     __tablename__ = "playlists"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(20), nullable=False, unique=True)
-    description = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(50), nullable=False, unique=True)
+    description = db.Column(db.String(250), nullable=False)
 
     songs = db.relationship("Song", secondary="playlists_songs", backref="playlists")
 

@@ -1,16 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
+<h1>All the songs!</h1>
 
-<h1>Check out the songs!</h1>
-
-<ul>
-{% for song in songs %}
-  <li><a href="/songs/{{song.id}}">{{ song.title }}</a></li>
-{% endfor %}
-</ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Artist</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for song in songs %}
+    <tr>
+      <td><a href="/songs/{{song.id}}">{{ song.title }}</a></td>
+      <td>{{ song.artist }}</td>
+      <td>
+        <form action="/songs/{{ song.id }}/delete" method="post">
+          <input type="hidden" />
+          <button type="submit" class="btn text-danger">X</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 <p><a class="btn btn-primary" href="/songs/add">Add a song</a></p>
-
 
 {% endblock %}
