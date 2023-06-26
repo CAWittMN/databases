@@ -2,7 +2,7 @@ from flask import Flask, redirect, render_template, url_for, flash
 from flask_debugtoolbar import DebugToolbarExtension
 import os
 
-from models import db, connect_db, Playlist, Song, Playlist_Song, find_not_included
+from models import db, connect_db, Playlist, Song
 from forms import SongToPlaylistForm, SongForm, PlaylistForm
 
 app = Flask(__name__)

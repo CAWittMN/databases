@@ -65,8 +65,3 @@ def connect_db(app):
 
     db.app = app
     db.init_app(app)
-
-
-def find_not_included(list_a, list_b):
-    new_list = [i for i in list_b if i not in list_a]
-    return new_list
